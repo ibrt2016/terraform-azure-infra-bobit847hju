@@ -1,0 +1,79 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: itayara
+spec:
+  profile:
+    displayName: Ibrahim Tayara
+    email: ibrtayyara@hotmail.com
+    picture: https://example.com/staff/jenny-with-party-hat.jpeg
+  memberOf: [central-it]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: central-it
+  description: The infra business unit
+spec:
+  type: business-unit
+  profile:
+    displayName: Central IT
+    email: it@example.com
+    picture: https://example.com/groups/bu-infrastructure.jpeg
+  parent: ops
+  children: [backstage, other]
+  members: [itayara]
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: bobit847hju-terraform-azure-infra
+  description: Stack bobit847hju
+spec:
+  owner: cnetral-it
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: bobit847hju-azure-infrastructure-resources
+  annotations:
+    github.com/project-slug: ibrt2016/terraform-azure-infra-bobit847hju # Change the value to your github repo which contains terraform code.
+    backstage.io/techdocs-ref: dir:.
+  links:
+  - url: https://github.com/claranet/terraform-azurerm-vnet
+    title: 'Virtual Network Terraform Module'
+    icon: github
+  tags:
+    - azure
+    - vnet
+    - terraform
+    - high-criticality
+    - ticket-number-8890
+    - entity-uk
+    - owner-bob-tayara
+    - stack-bobit847hju
+    - env-prod
+    - created-on-2024-07-30
+  title: 'Brand New Stack bobit847hju - Azure Reource Group and Virtal Network - Ticket #8890' # you can give any title
+  description: |
+   Create **Azure Virtual Network** in stack **bobit847hju** and in **prod** environment\
+   \
+   **Ticket number:**  8890\
+   **Created on:**  2024-07-30\
+   **Details:**  Create an **Azure Virtual network** and a **resource group** in a brand new stack **bobit847hju**, in **prod** environment and in **us-east** region\
+   **Action:**  Create a new **Resource Group** and a new **Virtual Network**\
+   **Brand new stack created?:**  Yes\
+   **Azure region:**  us-east\
+   **Virtual network address space:**  10.31.0.0/16\
+   **Virtual network suffix:**  001\
+   **Stack name:**  bobit847hju\
+   **Stack owner:**  bob-tayara\
+   **Azure subscription:**  infra\
+   **Criticality:**  High\
+   **Entity:**  UK\
+   **Cost center:**  00055
+spec:
+  type: azure-resource
+  owner: central-it
+  system: bobit847hju-terraform-azure-infra
+  lifecycle: production
